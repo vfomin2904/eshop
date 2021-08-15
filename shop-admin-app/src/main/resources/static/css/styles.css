@@ -1,0 +1,39 @@
+#nav_menu ul{
+    list-style-type: none;
+}
+#nav_menu li{
+    display: inline-block;
+    margin-right:10px;
+}
+#nav_menu a{
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+#nav_menu{
+    border-bottom: 1px solid #cdcdcd;
+}
+thead{
+    font-weight: bold;
+}
+.entity_table{
+    font-size:18px;
+    margin: 15px auto;
+}
+.entity_table td{
+    border: 1px solid #cdcdcd;
+    text-align: center;
+    padding: 5px 8px;
+}
+.entity_form{
+    margin: 1px auto;
+    width:300px;
+}
+.entity_form input, button, select{
+    margin: 8px 0;
+    width:100%;
+}
+.title{
+    margin:10px auto;
+    text-align: center;
+}

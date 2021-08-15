@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Продукты</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}" />
+</head>
+<body>
+<nav th:replace="~{fragments/menu :: nav_menu}">
+</nav>
+
+<table class="entity_table">
+    <tr>
+        <td>ID</td>
+        <td>Название</td>
+        <td>Цена</td>
+        <td>Действие</td>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}">1</td>
+        <td th:text="${product.name}">Cherry</td>
+        <td th:text="${product.price}">20</td>
+        <td>
+            <a th:href="@{'/product/change/'+${product.id}}">Изменить</a>
+            <a th:href="@{'/product/remove/'+${product.id}}">Удалить</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
