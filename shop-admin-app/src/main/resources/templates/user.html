@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Пользователи</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}" />
 </head>
 <body>
 <nav th:replace="~{fragments/menu :: nav_menu}">
@@ -11,14 +12,16 @@
         <tr>
             <td>ID</td>
             <td>Имя</td>
+            <td>Возраст</td>
             <td>Действие</td>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.id}">1</td>
             <td th:text="${user.username}">Alex</td>
+            <td th:text="${user.age}">21</td>
             <td>
                 <a th:href="@{'/user/change/'+${user.id}}">Изменить</a>
-                <a th:href="@{/user/delete}">Удалить</a>
+                <a th:href="@{'/user/remove/'+${user.id}}">Удалить</a>
             </td>
         </tr>
     </table>

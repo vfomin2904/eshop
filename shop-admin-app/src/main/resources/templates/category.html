@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Категории</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}" />
 </head>
 <body>
 <nav th:replace="~{fragments/menu :: nav_menu}">
 </nav>
-
+<table class="entity_table">
+    <tr>
+        <td>ID</td>
+        <td>Название</td>
+        <td>Действие</td>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.id}">1</td>
+        <td th:text="${category.name}">Alex</td>
+        <td>
+            <a th:href="@{'/category/change/'+${category.id}}">Изменить</a>
+            <a th:href="@{'/category/remove/'+${category.id}}">Удалить</a>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
