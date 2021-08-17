@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <nav th:fragment="nav_menu" id="nav_menu">
     <ul>
@@ -7,6 +7,9 @@
         <li><a th:href="@{/product}">Продукты</a></li>
         <li><a th:href="@{/category}">Категории</a></li>
     </ul>
+    <form sec:authorize="isAuthenticated()" method="post" action="/logout">
+        <input type="submit" value="Выход">
+    </form>
 </nav>
 </body>
 </html>
