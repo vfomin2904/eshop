@@ -4,6 +4,7 @@ import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -19,7 +20,8 @@ public class Product {
     @Column(name = "price")
     private Integer price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name="cateory_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
 
     public Product() {
@@ -29,6 +31,13 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public Product(Long id, String name, Integer price, Category category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
     }
 
     public Long getId() {

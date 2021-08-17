@@ -17,7 +17,10 @@ import ru.geekbrains.service.RolesService;
 import ru.geekbrains.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller("/")
 public class AdminController {
@@ -82,6 +85,8 @@ public class AdminController {
     @GetMapping("/product/change/{id}")
     public String getCategoryProductPage(Model model, @PathVariable("id") Long id){
         model.addAttribute("product", productsService.findById(id));
+        model.addAttribute("categories", categoryService.findAll());
+
         return "product_form";
     }
 
@@ -92,11 +97,20 @@ public class AdminController {
     }
 
     @PostMapping("/product")
-    public String updateProduct(@Valid @ModelAttribute("product") Product product, BindingResult result){
+    public String updateProduct(@Valid @ModelAttribute("product") ProductDto productDto, BindingResult result){
 
         if (result.hasErrors()) {
             return "product_form";
         }
+
+        Category category = categoryService.findById(productDto.getCategory().getId());
+
+        Product product = new Product(
+                productDto.getId(),
+                productDto.getName(),
+                productDto.getPrice(),
+                category
+        );
 
         productsService.save(product);
         return "redirect:/product";
