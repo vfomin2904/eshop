@@ -1,10 +1,6 @@
-package ru.geekbrains.persist;
-
-import org.hibernate.annotations.GeneratorType;
+package ru.geekbrains.persist.model;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -23,6 +19,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="cateory_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="brand_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Category brand;
 
     public Product() {
     }
@@ -70,6 +70,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Category getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Category brand) {
+        this.brand = brand;
     }
 
     @Override

@@ -53,18 +53,21 @@ public class AdminController {
         return "user_form";
     }
 
+    @GetMapping("/user/add")
+    public String getUserAddPage(Model model){
+        model.addAttribute("user", new UserDto());
+        model.addAttribute("roles", rolesService.findAll());
+        return "user_form";
+    }
+
     @PostMapping("/user")
     public String updateUser(@Valid @ModelAttribute("user")  UserDto user, BindingResult result){
-
         if(!user.getPassword().equals(user.getRepeatPassword())){
             result.rejectValue("password", "", "Пароли не совпадают");
         }
-
         if (result.hasErrors()) {
-            System.out.println("!!"+result.hasErrors());
             return "user_form";
         }
-
         userService.save(user);
         return "redirect:/user";
     }
@@ -142,5 +145,14 @@ public class AdminController {
 
         categoryService.save(category);
         return "redirect:/category";
+    }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
+    @GetMapping("/access_denied")
+    public String accessDeniedPage(){
+        return "access_denied";
     }
 }
