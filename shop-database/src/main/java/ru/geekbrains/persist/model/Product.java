@@ -1,6 +1,8 @@
 package ru.geekbrains.persist.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -23,6 +25,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="brand_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category brand;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Picture> pictures = new ArrayList<>();
 
     public Product() {
     }
@@ -78,6 +83,14 @@ public class Product {
 
     public void setBrand(Category brand) {
         this.brand = brand;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     @Override

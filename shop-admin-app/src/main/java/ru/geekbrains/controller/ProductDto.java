@@ -1,7 +1,10 @@
 package ru.geekbrains.controller;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Set;
 
 public class ProductDto {
@@ -13,6 +16,9 @@ public class ProductDto {
 
     private Integer price;
 
+    private List<Long> pictures;
+
+    private MultipartFile[] newPictures;
 
     private CategoryDto category;
 
@@ -62,5 +68,21 @@ public class ProductDto {
 
     public void setCategory(CategoryDto category) {
         this.category = category;
+    }
+
+    public List<Long> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Long> pictures) {
+        this.pictures = pictures;
+    }
+
+    public MultipartFile[] getNewPictures() {
+        return newPictures;
+    }
+
+    public void setNewPictures(MultipartFile[] newPictures) {
+        this.newPictures = newPictures;
     }
 }

@@ -8,19 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.geekbrains.persist.Category;
-import ru.geekbrains.persist.Product;
-import ru.geekbrains.persist.User;
+import ru.geekbrains.persist.model.Category;
+import ru.geekbrains.persist.model.Product;
 import ru.geekbrains.service.CategoryService;
-import ru.geekbrains.service.ProductService;
+import ru.geekbrains.service.ProductServiceImpl;
 import ru.geekbrains.service.RolesService;
 import ru.geekbrains.service.UserService;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller("/")
 public class AdminController {
@@ -35,7 +31,7 @@ public class AdminController {
     private RolesService rolesService;
 
     @Autowired
-    private ProductService productsService;
+    private ProductServiceImpl productsService;
 
     @GetMapping
     public String getMainPage(){return "index";}
@@ -115,7 +111,7 @@ public class AdminController {
                 category
         );
 
-        productsService.save(product);
+//        productsService.save(product);
         return "redirect:/product";
     }
 
